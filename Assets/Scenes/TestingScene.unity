@@ -26,19 +26,19 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ac7606564085d944faab5a59b87e40e6, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 0
+  m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
-  m_CustomReflection: {fileID: 0}
+  m_CustomReflection: {fileID: 8900000, guid: 620419ce4bc79d94dafbb10faad7f9a7, type: 3}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.7164572, g: 0.8128031, b: 0.9290482, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 66a08a30cb6f15b42aeac3028e78b6af, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -193,15 +193,18 @@ MonoBehaviour:
   isGrounded: 0
   sphereRB: {fileID: 388672161}
   carRB: {fileID: 494658723}
-  modifiedDrag: 1
-  gravityScale: -400
-  alignToGroundTime: 20
-  forwardSpeed: 200
-  reverseSpeed: 100
-  turnSpeed: 150
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  modifiedDrag: 1
+  gravityScale: -400
+  alignToGroundTime: 20
+  forwardSpeed: 0
+  maxForwardSpeed: 200
+  forwardAcceleration: 100
+  stoppingAcceleration: 200
+  reverseSpeed: 100
+  turnSpeed: 150
 --- !u!114 &125431764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +518,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.777512, y: 1}
+    m_SensorSize: {x: 1.778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -723,6 +726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -807,6 +811,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,7 +895,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -978,7 +1002,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2a0c0b0224ce8a8449dbd9ba28af3621, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1717,8 +1741,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1991239904168531565, guid: 063e52aef7390b1499775eaa077ac4c4, type: 3}
-  - {fileID: 643984211773790922, guid: 063e52aef7390b1499775eaa077ac4c4, type: 3}
+  - {fileID: 2100000, guid: 2a0c0b0224ce8a8449dbd9ba28af3621, type: 2}
+  - {fileID: 2100000, guid: 37b7e4e3ac517a8479cc2f3d00a15be4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1799,7 +1823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073144648051414046}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.0533795e-15, y: 0.39999998, z: -1.0686859}
+  m_LocalPosition: {x: -5.0533795e-15, y: 0.39, z: -1.0686859}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1826,12 +1850,12 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7576386722563338562, guid: 063e52aef7390b1499775eaa077ac4c4, type: 3}
-  - {fileID: 643984211773790922, guid: 063e52aef7390b1499775eaa077ac4c4, type: 3}
-  - {fileID: -3963241562183589234, guid: 063e52aef7390b1499775eaa077ac4c4, type: 3}
-  - {fileID: 3398073514908505954, guid: 063e52aef7390b1499775eaa077ac4c4, type: 3}
-  - {fileID: 1014270287720225592, guid: 063e52aef7390b1499775eaa077ac4c4, type: 3}
-  - {fileID: 659195688816635025, guid: 063e52aef7390b1499775eaa077ac4c4, type: 3}
+  - {fileID: 2100000, guid: 2a0c0b0224ce8a8449dbd9ba28af3621, type: 2}
+  - {fileID: 2100000, guid: 37b7e4e3ac517a8479cc2f3d00a15be4, type: 2}
+  - {fileID: 2100000, guid: 05c6263543a4c6a4791607d8f55cdb89, type: 2}
+  - {fileID: 2100000, guid: 05c6263543a4c6a4791607d8f55cdb89, type: 2}
+  - {fileID: 2100000, guid: a32181d6d8f21c04fbc230535e9b37aa, type: 2}
+  - {fileID: 2100000, guid: 05c6263543a4c6a4791607d8f55cdb89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
