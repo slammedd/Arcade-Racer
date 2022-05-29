@@ -10,16 +10,21 @@ public class CarController : MonoBehaviour
     [HideInInspector] public bool isGrounded;
     private float normalDrag;
 
+    [Header ("Assignables")]
     public Rigidbody sphereRB;
     public Rigidbody carRB;
+    public LayerMask groundLayer;
+
+    [Header ("Physics Controls")]
     public float modifiedDrag;
     public float gravityScale;
     public float alignToGroundTime;
     public float forwardSpeed;
+    public float maxForwardSpeed;
+    public float forwardAcceleration;
+    public float stoppingAcceleration;
     public float reverseSpeed;
     public float turnSpeed;
-    public LayerMask groundLayer;
-    
 
     private void Start()
     {
@@ -34,6 +39,25 @@ public class CarController : MonoBehaviour
         moveInput = Input.GetAxisRaw("Vertical");
         turnInput = Input.GetAxisRaw("Horizontal");
 
+        if(moveInput > 0)
+        {    
+            if(forwardSpeed < maxForwardSpeed)
+
+            {
+                forwardSpeed += Time.deltaTime * forwardAcceleration;
+            }
+            else
+            {
+                forwardSpeed = maxForwardSpeed;
+            }
+        }
+        else
+        {
+            if(forwardSpeed > 0)
+            {
+                forwardSpeed -= Time.deltaTime * stoppingAcceleration;
+            }
+        }
         float newRotation = turnInput * turnSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
         transform.Rotate(0,newRotation, 0, Space.World);
 
@@ -47,6 +71,7 @@ public class CarController : MonoBehaviour
 
         moveInput *= moveInput > 0 ? forwardSpeed : reverseSpeed;
 
+        
         sphereRB.drag = isGrounded ? normalDrag : modifiedDrag;
     }
 
