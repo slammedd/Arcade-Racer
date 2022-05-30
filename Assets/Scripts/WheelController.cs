@@ -9,6 +9,7 @@ public class WheelController : MonoBehaviour
     private Animator anim;
     public TrailRenderer[] trails;
     private CarController carCont;
+    public ParticleSystem[] wheelSmokeParticleSystems;
 
     private void Start()
     {
@@ -50,6 +51,11 @@ public class WheelController : MonoBehaviour
             {
                 trail.emitting = true;
             }
+
+            foreach(ParticleSystem ps in wheelSmokeParticleSystems)
+            {
+                ps.Play();
+            }
         }
 
         else
@@ -57,6 +63,11 @@ public class WheelController : MonoBehaviour
             foreach (TrailRenderer trail in trails)
             {
                 trail.emitting = false;
+            }
+
+            foreach (ParticleSystem ps in wheelSmokeParticleSystems)
+            {
+                ps.Stop();
             }
         }
     }
