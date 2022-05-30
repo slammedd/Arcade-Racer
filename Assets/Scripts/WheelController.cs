@@ -44,7 +44,7 @@ public class WheelController : MonoBehaviour
             anim.SetBool("left", false);
         }
 
-        if(horizontalAxis != 0 && carCont.isGrounded == true)
+        if(horizontalAxis != 0 && carCont.isGrounded == true && verticalAxis > 0)
         {
             foreach(TrailRenderer trail in trails)
             {
