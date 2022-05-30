@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
     public Rigidbody sphereRB;
     public Rigidbody carRB;
     public LayerMask groundLayer;
+    public Material breakLightMaterial;
 
     [Header ("Physics Controls")]
     public float modifiedDrag;
@@ -25,6 +26,10 @@ public class CarController : MonoBehaviour
     public float stoppingAcceleration;
     public float reverseSpeed;
     public float turnSpeed;
+
+    [Header("Misc")]
+    public float breakLightIntensity;
+    public float reverseLightIntensity;
 
     private void Start()
     {
@@ -50,14 +55,29 @@ public class CarController : MonoBehaviour
             {
                 forwardSpeed = maxForwardSpeed;
             }
+
+            breakLightMaterial.SetColor("_EmissionColor", new Color(191, 0, 0) * 0);
+            breakLightMaterial.SetColor("_BaseColor", new Color(1, 0.76f, 0.36f));
         }
+        
         else
         {
             if(forwardSpeed > 0)
             {
                 forwardSpeed -= Time.deltaTime * stoppingAcceleration;
             }
+
+            breakLightMaterial.SetColor("_EmissionColor", new Color(191,0,0) * breakLightIntensity);
+            breakLightMaterial.SetColor("_BaseColor", new Color(0.95f, 0.26f, 0.26f));
+
         }
+
+        if(moveInput < 0)
+        {
+            breakLightMaterial.SetColor("_BaseColor", new Color(1, 1, 1));
+            breakLightMaterial.SetColor("_EmissionColor", new Color(255, 255, 255) * reverseLightIntensity);
+        }
+
         float newRotation = turnInput * turnSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
         transform.Rotate(0,newRotation, 0, Space.World);
 
@@ -71,7 +91,6 @@ public class CarController : MonoBehaviour
 
         moveInput *= moveInput > 0 ? forwardSpeed : reverseSpeed;
 
-        
         sphereRB.drag = isGrounded ? normalDrag : modifiedDrag;
     }
 
