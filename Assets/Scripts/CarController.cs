@@ -17,6 +17,7 @@ public class CarController : MonoBehaviour
     public LayerMask groundLayer;
     public Material breakLightMaterial;
     public AudioSource engineSource;
+    public AudioClip engineSound;
 
     [Header("Physics Controls")]
     public float modifiedDrag;
@@ -34,7 +35,6 @@ public class CarController : MonoBehaviour
     [Header("Misc")]
     public float breakLightIntensity;
     public float reverseLightIntensity;
-    public float engineSoundMultiplier;
 
     private void Start()
     {
@@ -42,6 +42,8 @@ public class CarController : MonoBehaviour
         carRB.transform.parent = null;
 
         normalDrag = sphereRB.drag;
+
+        engineSource.clip = engineSound;
     }
 
     private void Update()
