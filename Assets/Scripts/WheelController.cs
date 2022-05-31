@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class WheelController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class WheelController : MonoBehaviour
     public TrailRenderer[] trails;
     private CarController carCont;
     public ParticleSystem[] wheelSmokeParticleSystems;
+    public AudioSource wheelSource;
+
+    private bool isPlaying;
 
     private void Start()
     {
@@ -45,7 +49,7 @@ public class WheelController : MonoBehaviour
             anim.SetBool("left", false);
         }
 
-        if(horizontalAxis != 0 && carCont.isGrounded == true && verticalAxis > 0)
+        if (horizontalAxis != 0 && carCont.isGrounded == true && verticalAxis > 0 && carCont.forwardSpeed >= carCont.maxForwardSpeed * 0.5f)
         {
             foreach(TrailRenderer trail in trails)
             {
@@ -55,6 +59,12 @@ public class WheelController : MonoBehaviour
             foreach(ParticleSystem ps in wheelSmokeParticleSystems)
             {
                 ps.Play();
+            }
+
+            if (!isPlaying)
+            {
+                wheelSource.DOFade(0.1f, 1);
+                isPlaying = true;
             }
         }
 
@@ -68,6 +78,12 @@ public class WheelController : MonoBehaviour
             foreach (ParticleSystem ps in wheelSmokeParticleSystems)
             {
                 ps.Stop();
+            }
+
+            if (isPlaying && horizontalAxis == 0)
+            {
+                wheelSource.DOFade(0, 0.25f);
+                isPlaying = false;
             }
         }
     }
