@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Cinemachine;
 
 public class WheelController : MonoBehaviour
 {
@@ -12,8 +13,12 @@ public class WheelController : MonoBehaviour
     private CarController carCont;
     public ParticleSystem[] wheelSmokeParticleSystems;
     public AudioSource wheelSource;
+    public ParticleSystem[] offTrackSmokeParticleSystems;
+    
+    public CinemachineVirtualCamera vCam;
 
     private bool isPlaying;
+    private bool isOffTrack;
 
     private void Start()
     {
@@ -21,6 +26,11 @@ public class WheelController : MonoBehaviour
         carCont = GetComponent<CarController>();
 
         foreach (ParticleSystem ps in wheelSmokeParticleSystems)
+        {
+            ps.Stop();
+        }
+
+        foreach (ParticleSystem ps in offTrackSmokeParticleSystems)
         {
             ps.Stop();
         }
@@ -54,7 +64,7 @@ public class WheelController : MonoBehaviour
             anim.SetBool("left", false);
         }
 
-        if (horizontalAxis != 0 && carCont.isGrounded == true && verticalAxis > 0 && carCont.forwardSpeed >= carCont.maxForwardSpeed * 0.5f)
+        if (horizontalAxis != 0 && carCont.isGrounded == true && verticalAxis != 0 && carCont.forwardSpeed >= carCont.maxForwardSpeed * 0.5f && !isOffTrack)
         {
             foreach(TrailRenderer trail in trails)
             {
@@ -80,8 +90,7 @@ public class WheelController : MonoBehaviour
                 trail.emitting = false;
             }
 
-            if (isPlaying && horizontalAxis == 0)
-            {
+         
                 wheelSource.DOFade(0, 0.25f);
                 isPlaying = false;
 
@@ -89,7 +98,51 @@ public class WheelController : MonoBehaviour
                 {
                     ps.Stop();
                 }
+           
+        }
+
+        if (carCont.offTrack == false)
+        {
+
+            isOffTrack = false;
+
+            foreach (ParticleSystem ps in offTrackSmokeParticleSystems)
+            {
+                ps.Stop();
             }
         }
+
+        else if (carCont.offTrack)
+        {
+
+            isOffTrack = true;
+           
+            if(carCont.forwardSpeed > 0)
+            {
+                foreach (ParticleSystem ps in offTrackSmokeParticleSystems)
+                {
+                    ps.Play();
+                }
+
+                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0.5f;
+            }
+            
+            else
+            {
+                foreach (ParticleSystem ps in offTrackSmokeParticleSystems)
+                {
+                    ps.Stop();
+                }
+
+                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+            }
+            
+        }
+
+        print(horizontalAxis);
     }
 }

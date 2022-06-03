@@ -10,11 +10,15 @@ public class CarController : MonoBehaviour
     [HideInInspector] public bool isGrounded;
     private float normalDrag;
     private float enginePitch;
+    [HideInInspector] public bool offTrack;
+    private float initialMForwardSpeed;
+    private float initialMReverseSpeed;
 
     [Header("Assignables")]
     public Rigidbody sphereRB;
     public Rigidbody carRB;
     public LayerMask groundLayer;
+    public LayerMask offTrackLayer;
     public Material breakLightMaterial;
     public AudioSource engineSource;
     public AudioClip engineSound;
@@ -25,11 +29,13 @@ public class CarController : MonoBehaviour
     public float alignToGroundTime;
     [HideInInspector] public float forwardSpeed;
     public float maxForwardSpeed;
+    public float maxForwardSpeedOffTrack;
     public float forwardAcceleration;
     public float stoppingAcceleration;
     public float reverseAcceleration;
     [HideInInspector] public float reverseSpeed;
     public float maxReverseSpeed;
+    public float maxReverseSpeedOffTrack;
     public float turnSpeed;
 
     [Header("Misc")]
@@ -44,6 +50,9 @@ public class CarController : MonoBehaviour
         normalDrag = sphereRB.drag;
 
         engineSource.clip = engineSound;
+
+        initialMForwardSpeed = maxForwardSpeed;
+        initialMReverseSpeed = maxReverseSpeed;
     }
 
     private void Update()
@@ -113,6 +122,21 @@ public class CarController : MonoBehaviour
 
         Quaternion toRotateTo = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotateTo, alignToGroundTime * Time.deltaTime);
+
+        RaycastHit hit1;
+        offTrack = Physics.Raycast(transform.position, -transform.up, out hit1, 1f, offTrackLayer);
+
+        if (offTrack)
+        {
+            maxForwardSpeed = maxForwardSpeedOffTrack;
+            maxReverseSpeed = maxReverseSpeedOffTrack;
+        }
+
+        else if (!offTrack)
+        {
+            maxForwardSpeed = initialMForwardSpeed;
+            maxReverseSpeed = initialMReverseSpeed;
+        }
 
         moveInput *= moveInput > 0 ? forwardSpeed : reverseSpeed;
 
