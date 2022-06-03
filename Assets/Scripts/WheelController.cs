@@ -19,6 +19,11 @@ public class WheelController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         carCont = GetComponent<CarController>();
+
+        foreach (ParticleSystem ps in wheelSmokeParticleSystems)
+        {
+            ps.Stop();
+        }
     }
 
     private void Update()
@@ -56,15 +61,15 @@ public class WheelController : MonoBehaviour
                 trail.emitting = true;
             }
 
-            foreach(ParticleSystem ps in wheelSmokeParticleSystems)
-            {
-                ps.Play();
-            }
-
             if (!isPlaying)
             {
                 wheelSource.DOFade(0.1f, 1);
                 isPlaying = true;
+                
+                foreach (ParticleSystem ps in wheelSmokeParticleSystems)
+                {
+                    ps.Play();
+                }
             }
         }
 
@@ -75,15 +80,15 @@ public class WheelController : MonoBehaviour
                 trail.emitting = false;
             }
 
-            foreach (ParticleSystem ps in wheelSmokeParticleSystems)
-            {
-                ps.Stop();
-            }
-
             if (isPlaying && horizontalAxis == 0)
             {
                 wheelSource.DOFade(0, 0.25f);
                 isPlaying = false;
+
+                foreach (ParticleSystem ps in wheelSmokeParticleSystems)
+                {
+                    ps.Stop();
+                }
             }
         }
     }
