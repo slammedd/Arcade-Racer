@@ -14,6 +14,7 @@ public class WheelController : MonoBehaviour
     public ParticleSystem[] wheelSmokeParticleSystems;
     public AudioSource wheelSource;
     public ParticleSystem[] offTrackSmokeParticleSystems;
+    public AudioSource offTrackSource;
     
     public CinemachineVirtualCamera vCam;
 
@@ -110,6 +111,8 @@ public class WheelController : MonoBehaviour
             {
                 ps.Stop();
             }
+
+            offTrackSource.DOFade(0, 0.25f);
         }
 
         else if (carCont.offTrack)
@@ -127,6 +130,8 @@ public class WheelController : MonoBehaviour
                 CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
                 cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0.5f;
+
+                offTrackSource.DOFade(0.85f, 1f);
             }
             
             else
@@ -139,10 +144,10 @@ public class WheelController : MonoBehaviour
                 CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
                 cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+
+                offTrackSource.DOFade(0, 0.25f);
             }
             
         }
-
-        print(horizontalAxis);
     }
 }
