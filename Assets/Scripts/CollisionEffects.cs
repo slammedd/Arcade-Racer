@@ -15,9 +15,12 @@ public class CollisionEffects : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(impactEffect, collision.GetContact(0).point, Quaternion.identity);
-        impactSource.PlayOneShot(impactSound);
-        ScreenShake(5f, 0.1f);
+        if (collision.gameObject.CompareTag("Impactable"))
+        {
+            Instantiate(impactEffect, collision.GetContact(0).point, Quaternion.identity);
+            impactSource.PlayOneShot(impactSound);
+            ScreenShake(5f, 0.1f);
+        }
     }
 
     public void ScreenShake(float intensity, float time)

@@ -15,6 +15,7 @@ public class WheelController : MonoBehaviour
     public AudioSource wheelSource;
     public ParticleSystem[] offTrackSmokeParticleSystems;
     public AudioSource offTrackSource;
+    public Material offTrackMat;
     
     public CinemachineVirtualCamera vCam;
 
@@ -23,6 +24,10 @@ public class WheelController : MonoBehaviour
 
     private void Start()
     {
+        foreach (ParticleSystem ps in offTrackSmokeParticleSystems)
+        {
+            ps.Stop();
+        }
         anim = GetComponent<Animator>();
         carCont = GetComponent<CarController>();
 
@@ -31,10 +36,6 @@ public class WheelController : MonoBehaviour
             ps.Stop();
         }
 
-        foreach (ParticleSystem ps in offTrackSmokeParticleSystems)
-        {
-            ps.Stop();
-        }
     }
 
     private void Update()
@@ -113,6 +114,10 @@ public class WheelController : MonoBehaviour
             }
 
             offTrackSource.DOFade(0, 0.25f);
+
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
         }
 
         else if (carCont.offTrack)
@@ -134,7 +139,7 @@ public class WheelController : MonoBehaviour
                 offTrackSource.DOFade(0.85f, 1f);
             }
             
-            else
+            else if (carCont.forwardSpeed == 0)
             {
                 foreach (ParticleSystem ps in offTrackSmokeParticleSystems)
                 {

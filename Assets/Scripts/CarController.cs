@@ -124,7 +124,7 @@ public class CarController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotateTo, alignToGroundTime * Time.deltaTime);
 
         RaycastHit hit1;
-        offTrack = Physics.Raycast(transform.position, -transform.up, out hit1, 1f, offTrackLayer);
+        offTrack = Physics.Raycast(transform.position, -transform.up, out hit1, 2f, offTrackLayer);
 
         if (offTrack)
         {
