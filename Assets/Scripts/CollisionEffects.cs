@@ -19,7 +19,7 @@ public class CollisionEffects : MonoBehaviour
         {
             Instantiate(impactEffect, collision.GetContact(0).point, Quaternion.identity);
             impactSource.PlayOneShot(impactSound);
-            ScreenShake(5f, 0.1f);
+            ScreenShake(5f, 0.25f);
         }
     }
 

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Cinemachine;
 
 public class WheelController : MonoBehaviour
 {
@@ -16,8 +15,6 @@ public class WheelController : MonoBehaviour
     public ParticleSystem[] offTrackSmokeParticleSystems;
     public AudioSource offTrackSource;
     public Material offTrackMat;
-    
-    public CinemachineVirtualCamera vCam;
 
     private bool isPlaying;
     private bool isOffTrack;
@@ -114,10 +111,6 @@ public class WheelController : MonoBehaviour
             }
 
             offTrackSource.DOFade(0, 0.25f);
-
-            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
         }
 
         else if (carCont.offTrack)
@@ -132,10 +125,6 @@ public class WheelController : MonoBehaviour
                     ps.Play();
                 }
 
-                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0.5f;
-
                 offTrackSource.DOFade(0.85f, 1f);
             }
             
@@ -145,10 +134,6 @@ public class WheelController : MonoBehaviour
                 {
                     ps.Stop();
                 }
-
-                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
 
                 offTrackSource.DOFade(0, 0.25f);
             }
