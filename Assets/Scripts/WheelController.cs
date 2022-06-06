@@ -18,6 +18,7 @@ public class WheelController : MonoBehaviour
 
     private bool isPlaying;
     private bool isOffTrack;
+    private bool offTrackAudioFade = true;
 
     private void Start()
     {
@@ -102,15 +103,19 @@ public class WheelController : MonoBehaviour
 
         if (carCont.offTrack == false)
         {
-
             isOffTrack = false;
+            offTrackAudioFade = true;
 
             foreach (ParticleSystem ps in offTrackSmokeParticleSystems)
             {
                 ps.Stop();
             }
 
-            offTrackSource.DOFade(0, 0.25f);
+            if (offTrackAudioFade == true)
+            {
+                offTrackSource.DOFade(0, 0.25f);
+                offTrackAudioFade = false;
+            }
         }
 
         else if (carCont.offTrack)
@@ -137,7 +142,6 @@ public class WheelController : MonoBehaviour
 
                 offTrackSource.DOFade(0, 0.25f);
             }
-            
         }
     }
 }
