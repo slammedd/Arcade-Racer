@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CrowdReaction : MonoBehaviour
 {
     public Animator[] crowdAnim;
+    private AudioSource source;
+
+    private void Start()
+    {
+        if(GetComponent<AudioSource>() != null)
+        {
+            source = GetComponent <AudioSource>();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +23,11 @@ public class CrowdReaction : MonoBehaviour
             foreach(Animator anim in crowdAnim)
             {
                 anim.SetBool("Reacting", true);
+            }
+
+            if(source != null)
+            {
+
             }
         }
     }
