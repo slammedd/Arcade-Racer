@@ -22,6 +22,7 @@ public class CarController : MonoBehaviour
     public Material breakLightMaterial;
     public AudioSource engineSource;
     public AudioClip engineSound;
+    public ParticleSystem speedLines;
 
     [Header("Physics Controls")]
     public float modifiedDrag;
@@ -147,6 +148,16 @@ public class CarController : MonoBehaviour
             engineSource.pitch = 0.5f + forwardSpeed / maxForwardSpeed;
         }
         else engineSource.pitch = 0.5f + reverseSpeed / maxReverseSpeed;
+
+        if(forwardSpeed == maxForwardSpeed)
+        {
+            speedLines.Play();
+        }
+
+        else
+        {
+            speedLines.Stop();
+        }
     }
 
     private void FixedUpdate()
