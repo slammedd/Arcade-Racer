@@ -27,7 +27,7 @@ public class CrowdReaction : MonoBehaviour
 
             if(source != null)
             {
-
+                source.DOFade(1f, 0.25f);
             }
         }
     }
@@ -39,6 +39,11 @@ public class CrowdReaction : MonoBehaviour
             foreach (Animator anim in crowdAnim)
             {
                 anim.SetBool("Reacting", false);
+            }
+
+            if (source != null)
+            {
+                source.DOFade(0f, 0.25f);
             }
         }
     }
