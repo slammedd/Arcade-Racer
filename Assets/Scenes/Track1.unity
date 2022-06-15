@@ -67165,19 +67165,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 754293135, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6910703
+      value: 0.6910704
       objectReference: {fileID: 0}
     - target: {fileID: 754293135, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.33503416
+      value: 0.3350342
       objectReference: {fileID: 0}
     - target: {fileID: 754293135, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.57629424
+      value: -0.5762942
       objectReference: {fileID: 0}
     - target: {fileID: 754293135, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.27939022
+      value: 0.27939013
       objectReference: {fileID: 0}
     - target: {fileID: 963194227, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: field of view
@@ -67189,19 +67189,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 963194228, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6910703
+      value: 0.6910704
       objectReference: {fileID: 0}
     - target: {fileID: 963194228, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.33503416
+      value: 0.3350342
       objectReference: {fileID: 0}
     - target: {fileID: 963194228, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.57629424
+      value: -0.5762942
       objectReference: {fileID: 0}
     - target: {fileID: 963194228, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.27939022
+      value: 0.27939013
       objectReference: {fileID: 0}
     - target: {fileID: 963194230, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: m_Enabled
@@ -67296,6 +67296,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1872801100}
     - target: {fileID: 6126163020201355363, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
+      propertyPath: turnJoystick
+      value: 
+      objectReference: {fileID: 1519860091}
+    - target: {fileID: 6126163020201355364, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
+      propertyPath: moveJoystick
+      value: 
+      objectReference: {fileID: 1872801100}
+    - target: {fileID: 6126163020201355364, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
       propertyPath: turnJoystick
       value: 
       objectReference: {fileID: 1519860091}

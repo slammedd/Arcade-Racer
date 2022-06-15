@@ -14,6 +14,8 @@ public class WheelController : MonoBehaviour
     public AudioSource wheelSource;
     public ParticleSystem[] offTrackSmokeParticleSystems;
     public AudioSource offTrackSource;
+    public Joystick moveJoystick;
+    public Joystick turnJoystick;
 
     private bool isPlaying;
     private bool isOffTrack;
@@ -36,8 +38,8 @@ public class WheelController : MonoBehaviour
 
     private void Update()
     {
-        float verticalAxis = Input.GetAxisRaw("Vertical");
-        float horizontalAxis = Input.GetAxisRaw("Horizontal");
+        float verticalAxis = moveJoystick.Vertical;
+        float horizontalAxis = turnJoystick.Horizontal;
 
         foreach (GameObject wheel in wheelsToRotate)
         {
