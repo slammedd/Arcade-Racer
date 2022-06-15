@@ -31715,17 +31715,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 93ca3bf53730d7f468d33caaa9b13a16, type: 3}
   m_PrefabInstance: {fileID: 347306292}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &975244477 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6126163020201355363, guid: 4859563c01f571a4b81edb69ab740499, type: 3}
-  m_PrefabInstance: {fileID: 6126163020084512688}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ccb3b0b10c8c1d40b0394055e9e7ef0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &976930747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 93ca3bf53730d7f468d33caaa9b13a16, type: 3}
@@ -47726,7 +47715,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1593763422}
   - component: {fileID: 1593763423}
-  - component: {fileID: 1593763424}
   m_Layer: 0
   m_Name: Wind Sound
   m_TagString: Untagged
@@ -47845,21 +47833,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1593763424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593763421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd223e3f7744164fb908fbefe88b55a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windSource: {fileID: 0}
-  moveInput: 0
-  carCont: {fileID: 975244477}
 --- !u!1 &1594240463
 GameObject:
   m_ObjectHideFlags: 0
