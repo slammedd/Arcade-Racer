@@ -23,6 +23,8 @@ public class CarController : MonoBehaviour
     public AudioSource engineSource;
     public AudioClip engineSound;
     public ParticleSystem speedLines;
+    public Joystick moveJoystick;
+    public Joystick turnJoystick;
 
     [Header("Physics Controls")]
     public float modifiedDrag;
@@ -58,8 +60,8 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-        moveInput = Input.GetAxisRaw("Vertical");
-        turnInput = Input.GetAxisRaw("Horizontal");
+        moveInput = moveJoystick.Vertical;
+        turnInput = turnJoystick.Horizontal;
 
         if (moveInput > 0)
         {
@@ -113,7 +115,7 @@ public class CarController : MonoBehaviour
             }
         }
 
-        float newRotation = turnInput * turnSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
+        float newRotation = turnInput * turnSpeed * Time.deltaTime;
         transform.Rotate(0, newRotation, 0, Space.World);
 
         transform.position = sphereRB.transform.position;
